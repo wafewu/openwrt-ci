@@ -1,5 +1,4 @@
 
-
 name: zn-m2-4.4
 
 on:
@@ -11,13 +10,15 @@ env:
   REPO_URL: https://github.com/wafewu/ipq6000-4.4.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ./config/znm2-max.config
+  CONFIG_FILE: ./config/znm2-4.4.config
   CUSTOM_SCRIPT_1: ./scripts/diy-part1.sh
   CUSTOM_SCRIPT_2: ./scripts/diy-part2.sh
-  STORE_PRODUCTS: false
-  STORE_FIRMWARE: true
-  RELEASE_FIRMWARE: true
-  TIME_ZONE: Asia/Shanghai
+  CLASH_KERNEL: amd64
+  CACHE_TOOLCHAIN: true
+  UPLOAD_BIN_DIR: false
+  FIRMWARE_RELEASE: true
+  FIRMWARE_TAG: zn-m2
+  TZ: Asia/Shanghai
 
 jobs:
   Build:
