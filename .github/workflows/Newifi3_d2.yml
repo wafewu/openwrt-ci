@@ -1,5 +1,5 @@
 
-name: Newifi3-D2
+name: Newifi3-d2
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ env:
   REPO_URL: https://github.com/jessehoo89/immortalwrt.git
   REPO_BRANCH: master
   CONFIG_FILE: configs/Newifi3-d2.config
-  DIY_SCRIPT: diy-newifi3.sh
+  DIY_SCRIPT: wrt-script.sh
   FEEDS_CONF: feeds.conf.default
   CLASH_KERNEL: amd64
   CACHE_TOOLCHAIN: true
