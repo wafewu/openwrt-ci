@@ -84,7 +84,7 @@ function git_sparse_clone() {
 
 # Alist & AdGuardHome & WolPlus & AriaNg & 集客无线AC控制器 & Lucky & 雅典娜LED控制 & Go
 #git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
-git_sparse_clone main https://github.com/kenzok8/small-package adguardhome luci-app-adguardhome
+git_sparse_clone main https://github.com/wafewu/Packages adguardhome luci-app-adguardhome
 #git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 git clone --depth=1 https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
 #git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo mihomo luci-app-mihomo
