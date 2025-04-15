@@ -1,6 +1,8 @@
 # 修改默认IP & 固件名称
 sed -i 's/192.168.1.1/192.168.1.1/g' package/base-files/files/bin/config_generate
 sed -i "s/hostname='.*'/hostname='OpenWrt'/g" package/base-files/files/bin/config_generate
+sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ Build by waffe')/g" feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+
 
 # 修改亚瑟运行LED为绿色
 # sed -i 's/&status_blue/\&status_green/g' target/linux/qualcommax/files/arch/arm64/boot/dts/qcom/ipq6000-re-ss-01.dts
