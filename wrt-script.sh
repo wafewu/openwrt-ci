@@ -85,41 +85,39 @@ function git_sparse_clone() {
 }
 
 # Alist & AdGuardHome & WolPlus & AriaNg & 集客无线AC控制器 & Lucky & 雅典娜LED控制 & Go
-#git clone --depth=1 https://github.com/sbwml/luci-app-alist package/luci-app-alist
 git_sparse_clone main https://github.com/wafewu/Packages adguardhome luci-app-adguardhome
-#git clone --depth=1 https://github.com/animegasan/luci-app-wolplus package/luci-app-wolplus
 git clone --depth=1 https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus
-#git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo mihomo luci-app-mihomo
+git_sparse_clone main https://github.com/morytyann/OpenWrt-mihomo mihomo luci-app-mihomo
 git_sparse_clone master https://github.com/immortalwrt/packages net/ariang
-#git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
-#git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
-#git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall package/luci-app-passwall
+git clone --depth=1 https://github.com/lwb1978/openwrt-gecoosac package/openwrt-gecoosac
+git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/luci-app-lucky
 git clone --depth=1 --single-branch --branch main https://github.com/xiaorouji/openwrt-passwall package/openwrt-passwall
 git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 git_sparse_clone main https://github.com/wafewu/Packages luci-app-wolplus
-#git_sparse_clone main https://github.com/wafewu/Packages luci-app-fileassistant
+
+rm -rf feeds/packages/lang/golang
+git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
 #git_sparse_clone master https://github.com/kenzok8/small luci-app-ssr-plus shadowsocks-rust shadowsocksr-libev
 
 # Themes
-git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat
+#git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
 # msd_lite
-git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
-git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
+#git clone --depth=1 https://github.com/ximiTech/luci-app-msd_lite package/luci-app-msd_lite
+#git clone --depth=1 https://github.com/ximiTech/msd_lite package/msd_lite
 
 # MosDNS
 rm -rf feeds/packages/net/mosdns
-#rm -rf feeds/packages/net/v2ray-geodata
+rm -rf feeds/packages/net/v2ray-geodata
 
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
-git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns v2dat
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns mosdns
+#git_sparse_clone v5 https://github.com/sbwml/luci-app-mosdns luci-app-mosdns
 
-#git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
-#git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
+git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # 修改本地时间格式
 sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
