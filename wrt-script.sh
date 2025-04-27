@@ -151,15 +151,6 @@ if [ -f "$CM_FILE" ]; then
 	cd $PKG_PATH && echo "coremark has been fixed!"
 fi
 
-#修改qca-nss-pbuf启动顺序
-NSS_PBUF="./kernel/mac80211/files/qca-nss-pbuf.init"
-if [ -f "$NSS_PBUF" ]; then
-	sed -i 's/START=.*/START=86/g' $NSS_PBUF
-
-	cd $PKG_PATH && echo "qca-nss-pbuf has been fixed!"
-fi
-
-
 # 修复 hostapd 报错
 cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
 
