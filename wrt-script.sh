@@ -97,7 +97,7 @@ git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclas
 git_sparse_clone main https://github.com/wafewu/Packages luci-app-wolplus
 #git_sparse_clone master https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
 git_sparse_clone main https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
-
+git clone --depth=1 https://github.com/lisaac/luci-app-diskman  package/luci-app-diskman
 rm -rf feeds/packages/lang/golang
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 
