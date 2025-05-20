@@ -98,7 +98,7 @@ git_sparse_clone main https://github.com/wafewu/Packages luci-app-wolplus
 #git_sparse_clone master https://github.com/tty228/luci-app-wechatpush package/luci-app-wechatpush
 git_sparse_clone main https://github.com/asvow/luci-app-tailscale package/luci-app-tailscale
 git clone --depth=1 https://github.com/lisaac/luci-app-diskman  package/luci-app-diskman
-git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-fileassistant
+#git_sparse_clone main https://github.com/sirpdboy/sirpdboy-package luci-app-fileassistant
 
 rm -rf feeds/packages/lang/golang
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
@@ -107,7 +107,7 @@ git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 24.x feeds/
 
 # Themes
 #git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat
-git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+git clone --depth=1  https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 
 # 更改 Argon 主题背景
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
