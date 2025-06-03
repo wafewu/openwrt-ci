@@ -171,9 +171,6 @@ update_golang() {
     fi
 }
 
-# 取消主题默认设置
-find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/set luci.main.mediaurlbase/d' {} \;
-
 #修改qca-nss-pbuf启动顺序
  NSS_PBUF="./kernel/mac80211/files/qca-nss-pbuf.init"
  if [ -f "$NSS_PBUF" ]; then
@@ -181,6 +178,16 @@ find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/
  
  	cd $PKG_PATH && echo "qca-nss-pbuf has been fixed!"
  fi
+
+ #修复Rust编译失败
+RUST_FILE=$(find ../feeds/packages/ -maxdepth 3 -type f -wholename "*/rust/Makefile")
+if [ -f "$RUST_FILE" ]; then
+	echo " "
+
+	sed -i 's/ci-llvm=true/ci-llvm=false/g' $RUST_FILE
+
+	cd $PKG_PATH && echo "rust has been fixed!"
+fi
  
 
 # 修改 Makefile
