@@ -170,7 +170,58 @@ update_golang() {
         git clone $GOLANG_REPO -b $GOLANG_BRANCH ./feeds/packages/lang/golang
     fi
 }
- 
+
+ #修复vlmcsd编译失败
+vlmcsd_dir="$GITHUB_WORKSPACE/wrt/feeds/packages/net/vlmcsd"
+vlmcsd_patch_src="$GITHUB_WORKSPACE/scripts/fix_compile_with_ccache.patch"
+vlmcsd_patch_dest="$vlmcsd_dir/patches"
+
+if [ -d "$vlmcsd_dir" ]; then
+	# 检查补丁文件是否存在
+	if [ ! -f "$vlmcsd_patch_src" ]; then
+		echo "Error: vlmcsd patch file $vlmcsd_patch_src not found!" >&2
+		exit 1
+	fi
+
+	# 创建目标目录并复制补丁
+	mkdir -p "$vlmcsd_patch_dest" || exit 1
+	cp -f "$vlmcsd_patch_src" "$vlmcsd_patch_dest" || exit 1
+
+	# 进入源码目录应用补丁（如果未应用过）
+	if ! grep -q 'fix_compile_with_ccache' "$vlmcsd_dir/Makefile" 2>/dev/null; then
+		cd "$vlmcsd_dir" || exit 1
+		patch -p1 < "$vlmcsd_patch_src" && echo "vlmcsd: Patch applied to source!" || echo "vlmcsd: Patch may already be applied."
+		cd "$PKG_PATH"
+	fi
+
+	echo "vlmcsd: Patch copied and applied successfully!"
+	cd "$PKG_PATH" && echo "vlmcsd has been fixed!"
+else
+	echo "Warning: vlmcsd directory $vlmcsd_dir not found, skipping patch."
+fi
+
+
+#修复DiskMan编译失败
+DM_FILE="./luci-app-diskman/applications/luci-app-diskman/Makefile"
+if [ -f "$DM_FILE" ]; then
+	echo " "
+
+	sed -i 's/fs-ntfs/fs-ntfs3/g' $DM_FILE
+
+	cd $PKG_PATH && echo "diskman has been fixed!"
+fi
+
+#修复rpcsvc-proto编译失败
+RP_PATH="../feeds/packages/libs/rpcsvc-proto"
+if [ -d "$RP_PATH" ]; then
+	echo " "
+
+	cd $RP_PATH && mkdir -p patches && cd ./patches
+
+	curl -sL -o "0001-po-update-for-gettext-0.22.patch" https://raw.githubusercontent.com/neheb/packages/refs/heads/mangix/libs/rpcsvc-proto/patches/0001-po-update-for-gettext-0.22.patch
+
+	cd $PKG_PATH && echo "rpcsvc-proto has been fixed!"
+fi
 
 # 修改 Makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
